@@ -20,7 +20,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories("com.rest.repository")
+@EnableJpaRepositories("com.nick.voter.repository")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("com.nick.voter")

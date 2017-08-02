@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @ComponentScan("com.nick.voter")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
