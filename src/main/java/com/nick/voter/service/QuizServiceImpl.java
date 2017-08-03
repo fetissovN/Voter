@@ -5,6 +5,8 @@ import com.nick.voter.entity.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class QuizServiceImpl implements QuizService {
 
@@ -39,5 +41,14 @@ public class QuizServiceImpl implements QuizService {
         repository.save(quiz);
     }
 
+    @Override
+    public void assertQuiz(Quiz quiz) {
+        quiz.setVotes(quiz.getVotes()+1);
+        repository.save(quiz);
+    }
 
+    @Override
+    public List<Quiz> getAllQuiz() {
+        return repository.findAll();
+    }
 }

@@ -2,6 +2,8 @@ package com.nick.voter.service;
 
 import com.nick.voter.entity.Quiz;
 
+import java.util.List;
+
 public interface QuizService {
 
     long saveNewQuiz(Quiz quiz);
@@ -11,6 +13,10 @@ public interface QuizService {
     void startQuiz(Quiz quiz);
 
     void closeQuiz(Quiz quiz);
+
+    void assertQuiz(Quiz quiz);
+
+    List<Quiz> getAllQuiz();
 
 //    Long getQuizId(Quiz quiz);
 }

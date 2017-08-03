@@ -10,9 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
-public class MainController {
+public class RestController {
     public static final String HOST = "http://localhost:8077";
 
     @Autowired
@@ -67,4 +68,24 @@ public class MainController {
         quizService.closeQuiz(quiz);
         return JsonParser.makeStatus("success");
     }
+
+    @RequestMapping(value = "api/quiz/assert/{quizId}", method = RequestMethod.GET)
+    @ResponseBody
+    public String assertQuiz(@PathVariable int quizId) {
+        Quiz quiz = quizService.getById((long) quizId);
+        if (quiz.getClosed()==0 && quiz.getStarted()==1){
+            quizService.assertQuiz(quiz);
+            return JsonParser.makeStatus("success");
+        }else {
+            return JsonParser.makeStatus("is closed or not started");
+        }
+    }
+
+    @RequestMapping(value = "api/get/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Quiz> listQuiz() {
+        return quizService.getAllQuiz();
+    }
+
 }
+
