@@ -1,4 +1,4 @@
-package com.nick.voter.dto;
+package com.nick.voter.dao;
 
 
 import com.nick.voter.entity.Quiz;

@@ -1,7 +1,6 @@
 package com.nick.voter.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +21,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories("com.nick.voter.dto")
+@EnableJpaRepositories("com.nick.voter.dao")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 @ComponentScan("com.nick.voter")
@@ -37,7 +36,7 @@ public class DatabaseConfig {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(
-                new String[] { "com.nick.voter.dto" });
+                new String[] { "com.nick.voter.dao" });
         sessionFactory.setHibernateProperties(getHibernateProperties());
 
         return sessionFactory;

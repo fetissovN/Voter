@@ -1,6 +1,7 @@
 package com.nick.voter.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "quiz_all")
@@ -17,7 +18,31 @@ public class Quiz {
     @Column(name = "votes")
     private int votes;
 
+    @Column(name = "started")
+    @NotNull
+    private int started;
+
+    @Column(name = "closed")
+    @NotNull
+    private int closed;
+
     public Quiz() {
+    }
+
+    public int getStarted() {
+        return started;
+    }
+
+    public void setStarted(int started) {
+        this.started = started;
+    }
+
+    public int getClosed() {
+        return closed;
+    }
+
+    public void setClosed(int closed) {
+        this.closed = closed;
     }
 
     public Long getId() {
