@@ -34,16 +34,37 @@ public class MainController {
 
     @RequestMapping(value = "api/get/{quizId}", method = RequestMethod.GET)
     @ResponseBody
-    public String getQuizURL(@PathVariable int quizId){
-        String json = null;
-        try {
-            Quiz quiz = quizService.getById((long) quizId);
-            json = JsonParser.objectToStringJson(quiz);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return "fail";
+    public Quiz getQuizURL(@PathVariable int quizId){
+        Quiz quiz = quizService.getById((long) quizId);
+        if (quiz==null){
+            return null;
         }
-        return json;
+        return quiz;
     }
 
+    @RequestMapping(value = "api/start/{quizId}", method = RequestMethod.GET)
+    @ResponseBody
+    public String startQuiz(@PathVariable int quizId){
+        Quiz quiz = quizService.getById((long) quizId);
+        if (quiz.getClosed()==1){
+            return JsonParser.makeStatus("is closed");
+        }else if (quiz.getStarted()==1){
+            return JsonParser.makeStatus("already started");
+        }
+        quizService.startQuiz(quiz);
+        return HOST + "/api/get/"+quiz.getId();
+    }
+
+    @RequestMapping(value = "api/close/{quizId}", method = RequestMethod.GET)
+    @ResponseBody
+    public String closeQuiz(@PathVariable int quizId){
+        Quiz quiz = quizService.getById((long) quizId);
+        if (quiz.getClosed()==1){
+            return JsonParser.makeStatus("already closed");
+        }else if (quiz.getStarted()==0){
+            return JsonParser.makeStatus("not started");
+        }
+        quizService.closeQuiz(quiz);
+        return JsonParser.makeStatus("success");
+    }
 }

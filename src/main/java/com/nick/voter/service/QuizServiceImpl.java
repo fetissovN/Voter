@@ -25,10 +25,19 @@ public class QuizServiceImpl implements QuizService {
         return repository.findOne(id);
     }
 
-//    @Override
-//    public Long getQuizId(Quiz quiz) {
-//        return repository.findOne();
-//    }
+    @Override
+    public void startQuiz(Quiz quiz) {
+//        Quiz quizDb = getById(quiz.getId());
+        quiz.setStarted(1);
+        repository.save(quiz);
+    }
+
+    @Override
+    public void closeQuiz(Quiz quiz) {
+//        Quiz quizDb = getById(quiz.getId());
+        quiz.setClosed(1);
+        repository.save(quiz);
+    }
 
 
 }

@@ -8,5 +8,9 @@ public interface QuizService {
 
     Quiz getById(Long id);
 
+    void startQuiz(Quiz quiz);
+
+    void closeQuiz(Quiz quiz);
+
 //    Long getQuizId(Quiz quiz);
 }

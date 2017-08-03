@@ -3,13 +3,10 @@ package com.nick.voter.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.nick.voter.dto.Theme;
 import com.nick.voter.entity.Quiz;
 import com.nick.voter.util.converters.ThemeToQuiz;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
@@ -32,5 +29,11 @@ public class JsonParser {
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(quiz);
         return jsonInString;
+    }
+
+    public static synchronized String makeStatus(String message){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status",message);
+        return jsonObject.toString();
     }
 }
