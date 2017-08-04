@@ -1,17 +1,9 @@
 <html>
 <head>
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
-
-    <!-- jQuery -->
     <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
 
-    <!-- DataTables -->
-    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-    <#--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
     <link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <#--<link rel="stylesheet" type="text/css" href="/media/css/jquery.dataTables.css">-->
     <script type="text/javascript" src="/js/foundation.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
 </head>
@@ -23,10 +15,10 @@
         <button id="makeQuiz" class="button">Make Quiz</button>
     </div>
     <div class="large-6 large-centered column">
+        <h1>${id}</h1>
         <div id="loadedQuizPlaceholder">
 
         </div>
-
     </div>
     <div class="large-3 column"></div>
 </div>
