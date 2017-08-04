@@ -12,13 +12,26 @@
     <h1 align="center">Voter</h1>
     <div class="large-3 column">
         <button id="showAll" class="button">Show all</button><br>
-        <button id="makeQuiz" class="button">Make Quiz</button>
+        <#--<button id="makeQuiz" class="button">Make Quiz</button>-->
     </div>
     <div class="large-6 large-centered column">
-        <h1>${id}</h1>
-        <div id="loadedQuizPlaceholder">
-
-        </div>
+        <article class="article-row">
+            <div class="article-row-content">
+                <p class="article-row-content-header">Id ${quiz.id}</p>
+                <p class="article-row-content-description">${quiz.theme}</p>
+                <#--<p class="article-row-content-description">${quiz.started}</p>-->
+                <#--<p class="article-row-content-description">${quiz.closed}</p>-->
+                <p id="voteTag" class="article-row-content-author">
+                    Votes: ${quiz.votes}
+                    <a id="vote" href="/post/like/">Click to vote!</a>
+                </p>
+            </div>
+        </article>
+        <#if quiz.started == 0>
+            <button id="toStart" class="button">Start!</button>
+        <#elseif quiz.closed == 0>
+            <button id="toClose" class="button">Close!</button>
+        </#if>
     </div>
     <div class="large-3 column"></div>
 </div>

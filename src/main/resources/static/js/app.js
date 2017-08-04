@@ -20,16 +20,12 @@ $(document).ready(function () {
                 $.each(data, function (index,article) {
                     var $quizTable=$('<table class="table" align="center"></table>');
                     var $container=$('<tr></tr>');
-                    var $containerTheme=$('<tr><td width="400"></td></tr>');
-                    // var $containerTheme;
                     $.each(article,function (key,val) {
                         if (key == 'id'){
-                            var $quizId=$('<tr><td id="key">' + key + ' ' + val + '<a href="/make/">link</a></td></tr>');
+                            var $quizId=$('<tr><td id="key">' + key + ' ' + val + '<a href="/quiz/'+val+'"> link</a></td></tr>');
                             $quizTable.append($quizId)
                         }else if (key == 'theme') {
                             var $quizAttrTr = $('<tr><td colspan="2"><p>' + val + '<p></td></tr>');
-                            // var $quizAttrTr = $('<h4>' + val + '</h4>');
-                            // $quizTable=$quizAttrTr;
                             $quizTable.append($quizAttrTr);
                         }else if (key == 'votes') {
                             var $quizVotes= $('<tr><td>Votes: ' + val + '</td></tr>');
@@ -53,8 +49,6 @@ $(document).ready(function () {
                             }
                         }
                     });
-
-                    // $quizTable.append($containerTheme);
                     $quizTable.append($container);
                     $('#loadedQuizPlaceholder').append($quizTable);
                 });
