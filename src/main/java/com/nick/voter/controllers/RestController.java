@@ -53,7 +53,7 @@ public class RestController {
             return JsonParser.makeStatus("already started");
         }
         quizService.startQuiz(quiz);
-        return HOST + "/api/get/"+quiz.getId();
+        return JsonParser.makeStatus("success");
     }
 
     @RequestMapping(value = "api/close/{quizId}", method = RequestMethod.GET)

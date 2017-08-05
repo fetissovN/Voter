@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <script type="text/javascript" src="/js/foundation.min.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/quizPage.js"></script>
 </head>
 <body>
 <div class="row">
@@ -19,18 +19,19 @@
             <div class="article-row-content">
                 <p class="article-row-content-header">Id ${quiz.id}</p>
                 <p class="article-row-content-description">${quiz.theme}</p>
-                <#--<p class="article-row-content-description">${quiz.started}</p>-->
-                <#--<p class="article-row-content-description">${quiz.closed}</p>-->
-                <p id="voteTag" class="article-row-content-author">
-                    Votes: ${quiz.votes}
-                    <a id="vote" href="/post/like/">Click to vote!</a>
-                </p>
+                <#if quiz.started == 1>
+                    <p id="voteTag" class="article-row-content-author">
+                        Votes: ${quiz.votes}
+                        <a id="vote" class="${quiz.id}.${quiz.started}.${quiz.closed}">Click to vote!</a>
+                    </p>
+                </#if>
+
             </div>
         </article>
         <#if quiz.started == 0>
-            <button id="toStart" class="button">Start!</button>
+            <button id="toStart" name="${quiz.id}" class="button">Start!</button>
         <#elseif quiz.closed == 0>
-            <button id="toClose" class="button">Close!</button>
+            <button id="toClose" name="${quiz.id}" class="button">Close!</button>
         </#if>
     </div>
     <div class="large-3 column"></div>
