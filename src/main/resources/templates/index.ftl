@@ -21,10 +21,16 @@
     <div class="large-3 column">
         <button id="showAll" class="button">Show all</button><br>
         <button id="makeQuiz" class="button">Make Quiz</button>
+
     </div>
     <div class="large-6 large-centered column">
         <div id="loadedQuizPlaceholder">
 
+        </div>
+        <div id="makeQuizPlaceholder" style="display: none">
+            <textarea id="theme"></textarea>
+            <span id="err" style="color: red"></span><br>
+            <button id="saveQuiz" class="button">Save</button>
         </div>
 
     </div>

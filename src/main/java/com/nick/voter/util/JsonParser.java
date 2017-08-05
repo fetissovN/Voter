@@ -31,9 +31,15 @@ public class JsonParser {
         return jsonInString;
     }
 
-    public static synchronized String makeStatus(String message){
+    public static synchronized JSONObject makeStatus(String message){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status",message);
-        return jsonObject.toString();
+        return jsonObject;
+    }
+
+    public static synchronized JSONObject makeUrl(String message){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("url",message);
+        return jsonObject;
     }
 }

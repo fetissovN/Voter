@@ -1,10 +1,9 @@
 package com.nick.voter.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nick.voter.entity.Quiz;
-import com.nick.voter.service.QuizService;
 import com.nick.voter.service.QuizServiceImpl;
 import com.nick.voter.util.JsonParser;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,18 +18,19 @@ public class RestController {
     @Autowired
     private QuizServiceImpl quizService;
 
-    @RequestMapping(value = "api/makeQuiz/{quiz}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/makeQuiz", method = RequestMethod.POST)
     @ResponseBody
-    public String makeTheme(@PathVariable String quiz){
+    public JSONObject makeTheme(@RequestParam JSONObject quiz){
         Quiz quizNew = null;
-        try {
-            quizNew = JsonParser.parseJsonStrToObject(quiz);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "fail";
-        }
+        System.out.println(quiz);
+//        try {
+//            quizNew = JsonParser.parseJsonStrToObject(quiz);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return JsonParser.makeStatus("fail");
+//        }
         Long id = quizService.saveNewQuiz(quizNew);
-        return HOST + "/api/get/"+id;
+        return JsonParser.makeUrl(HOST + "/api/get/"+id);
     }
 
     @RequestMapping(value = "api/get/{quizId}", method = RequestMethod.GET)
@@ -45,7 +45,7 @@ public class RestController {
 
     @RequestMapping(value = "api/start/{quizId}", method = RequestMethod.GET)
     @ResponseBody
-    public String startQuiz(@PathVariable int quizId){
+    public JSONObject startQuiz(@PathVariable int quizId){
         Quiz quiz = quizService.getById((long) quizId);
         if (quiz.getClosed()==1){
             return JsonParser.makeStatus("is closed");
@@ -58,7 +58,7 @@ public class RestController {
 
     @RequestMapping(value = "api/close/{quizId}", method = RequestMethod.GET)
     @ResponseBody
-    public String closeQuiz(@PathVariable int quizId){
+    public JSONObject closeQuiz(@PathVariable int quizId){
         Quiz quiz = quizService.getById((long) quizId);
         if (quiz.getClosed()==1){
             return JsonParser.makeStatus("already closed");
@@ -71,7 +71,7 @@ public class RestController {
 
     @RequestMapping(value = "api/quiz/assert/{quizId}", method = RequestMethod.GET)
     @ResponseBody
-    public String assertQuiz(@PathVariable int quizId) {
+    public JSONObject assertQuiz(@PathVariable int quizId) {
         Quiz quiz = quizService.getById((long) quizId);
         if (quiz.getClosed()==0 && quiz.getStarted()==1){
             quizService.assertQuiz(quiz);

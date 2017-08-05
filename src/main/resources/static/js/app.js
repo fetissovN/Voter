@@ -12,6 +12,9 @@
 // });
 $(document).ready(function () {
     $('#showAll').click(function (e) {
+        $('#makeQuizPlaceholder').hide();
+        $('#loadedQuizPlaceholder').show();
+        $('#loadedQuizPlaceholder').empty();
         $.ajax({
             type: 'GET',
             dataType: 'json',
@@ -54,6 +57,33 @@ $(document).ready(function () {
                 });
             }
         });
-    })
+    });
+
+    $('#makeQuiz').click(function (e) {
+        $('#loadedQuizPlaceholder').hide();
+        $('#makeQuizPlaceholder').show();
+    });
+    $('#saveQuiz').click(function (e) {
+        alert('asda');
+        var theme = $('#theme').val();
+        var json = '{"theme","' + theme + '"}';
+        alert(json);
+        if (theme.length < 20){
+            $('#err').text('Too short theme!')
+        }else {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: theme,
+                url: '/api/makeQuiz/',
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+
+    });
+
+
 
 });
