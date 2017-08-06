@@ -1,20 +1,9 @@
-// $('body').on('click', '#showAll', function(){
-//     $.ajax({
-//         type: 'GET',
-//         url: '/get/all',
-//         success: function(data){
-//             alert("success")
-//             alert(data);
-//             // $('.loadedPostsPlaceholder'+page).append(data);
-//         }
-//     });
-//
-// });
 $(document).ready(function () {
-    $('#showAll').click(function (e) {
+    $('#showAll').click(function () {
         $('#makeQuizPlaceholder').hide();
         $('#loadedQuizPlaceholder').show();
         $('#loadedQuizPlaceholder').empty();
+        $('#urlDiv').hide();
         $.ajax({
             type: 'GET',
             dataType: 'json',
@@ -59,31 +48,30 @@ $(document).ready(function () {
         });
     });
 
-    $('#makeQuiz').click(function (e) {
+    $('#makeQuiz').click(function () {
         $('#loadedQuizPlaceholder').hide();
         $('#makeQuizPlaceholder').show();
+        $('#urlDiv').hide();
     });
-    $('#saveQuiz').click(function (e) {
-        alert('asda');
-        var theme = $('#theme').val();
-        var json = '{"theme","' + theme + '"}';
-        alert(json);
-        if (theme.length < 20){
+    $('#saveQuiz').click(function () {
+        var themeS = $('#theme').val();
+        var j = JSON.stringify({theme: themeS});
+        if (themeS.length < 20){
             $('#err').text('Too short theme!')
         }else {
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                data: theme,
-                url: '/api/makeQuiz/',
+                data: j,
+                url: '/api/makeQuiz',
+                contentType: "application/json",
                 success: function (data) {
-                    alert(data);
+                    $('#linkToQuiz').append(data.url);
+                    $('#linkToQuiz').attr('href',data.url);
+                    $('#urlDiv').show();
+                    $('#makeQuizPlaceholder').hide();
                 }
             });
         }
-
     });
-
-
-
 });

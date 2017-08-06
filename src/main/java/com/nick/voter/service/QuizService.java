@@ -18,5 +18,4 @@ public interface QuizService {
 
     List<Quiz> getAllQuiz();
 
-//    Long getQuizId(Quiz quiz);
 }

@@ -31,7 +31,6 @@ public class DatabaseConfig {
     private Environment env;
 
     @Bean
-//    @Qualifier("sessionFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());

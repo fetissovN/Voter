@@ -1,7 +1,6 @@
 <html>
 <head>
     <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href="/css/foundation.min.css">
     <link rel="stylesheet" type="text/css" href="/css/app.css">
     <script type="text/javascript" src="/js/foundation.min.js"></script>
@@ -12,7 +11,6 @@
     <h1 align="center">Voter</h1>
     <div class="large-3 column">
         <a href="/"><button id="back" class="button">Back to main page</button></a><br>
-        <#--<button id="makeQuiz" class="button">Make Quiz</button>-->
     </div>
     <div class="large-6 large-centered column">
         <article class="article-row">
@@ -25,7 +23,6 @@
                         <a id="vote" class="${quiz.id}.${quiz.started}.${quiz.closed}">Click to vote!</a>
                     </p>
                 </#if>
-
             </div>
         </article>
         <#if quiz.started == 0>

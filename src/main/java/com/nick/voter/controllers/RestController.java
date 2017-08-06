@@ -1,46 +1,40 @@
 package com.nick.voter.controllers;
 
+import com.nick.voter.dto.Theme;
 import com.nick.voter.entity.Quiz;
 import com.nick.voter.service.QuizServiceImpl;
 import com.nick.voter.util.JsonParser;
+import com.nick.voter.util.converters.ThemeToQuiz;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
 public class RestController {
-    public static final String HOST = "http://localhost:8077";
+    @Value("${host}")
+    private String HOST;
 
     @Autowired
     private QuizServiceImpl quizService;
 
     @RequestMapping(value = "api/makeQuiz", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject makeTheme(@RequestParam JSONObject quiz){
-        Quiz quizNew = null;
-        System.out.println(quiz);
-//        try {
-//            quizNew = JsonParser.parseJsonStrToObject(quiz);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return JsonParser.makeStatus("fail");
-//        }
+    public JSONObject makeTheme(@RequestBody Theme theme){
+
+        Quiz quizNew = new ThemeToQuiz().convert(theme);
         Long id = quizService.saveNewQuiz(quizNew);
-        return JsonParser.makeUrl(HOST + "/api/get/"+id);
+        return JsonParser.makeUrl(HOST + "/quiz/"+id);
     }
 
     @RequestMapping(value = "api/get/{quizId}", method = RequestMethod.GET)
     @ResponseBody
     public Quiz getQuizURL(@PathVariable int quizId){
         Quiz quiz = quizService.getById((long) quizId);
-        if (quiz==null){
-            return null;
-        }
-        return quiz;
+        return quiz==null?null:quiz;
     }
 
     @RequestMapping(value = "api/start/{quizId}", method = RequestMethod.GET)

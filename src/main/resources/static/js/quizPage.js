@@ -6,7 +6,7 @@ $(document).ready(function () {
         success: function (data) {
         }
     });
-    $('#vote').click(function (e) {
+    $('#vote').click(function () {
         var started= $('#vote').attr('class').split('.')[1];
         var closed= $('#vote').attr('class').split('.')[2];
         var id= $('#vote').attr('class').split('.')[0];
@@ -27,14 +27,14 @@ $(document).ready(function () {
             }
         }
     });
-    $('#toStart').click(function (e) {
+    $('#toStart').click(function () {
         var id= $('#toStart').attr('name');
             $.getJSON('/api/start/'+id,function (data) {
                 alert(data.status);
                 location.reload();
             });
     });
-    $('#toClose').click(function (e) {
+    $('#toClose').click(function () {
         var id= $('#toClose').attr('name');
         $.getJSON('/api/close/'+id,function (data) {
             alert(data.status);

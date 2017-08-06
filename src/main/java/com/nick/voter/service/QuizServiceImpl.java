@@ -10,9 +10,6 @@ import java.util.List;
 @Service
 public class QuizServiceImpl implements QuizService {
 
-//    @Autowired
-//    private QuizDTO quizDTO;
-
     @Autowired
     private RemindRepository repository;
 
@@ -29,14 +26,12 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void startQuiz(Quiz quiz) {
-//        Quiz quizDb = getById(quiz.getId());
         quiz.setStarted(1);
         repository.save(quiz);
     }
 
     @Override
     public void closeQuiz(Quiz quiz) {
-//        Quiz quizDb = getById(quiz.getId());
         quiz.setClosed(1);
         repository.save(quiz);
     }

@@ -19,6 +19,7 @@ public class LayoutController {
     public String main(){
         return "index";
     }
+
     @RequestMapping("/quiz/{id}")
     public String quizLook(@PathVariable Long id, Model model){
         if (id != null){

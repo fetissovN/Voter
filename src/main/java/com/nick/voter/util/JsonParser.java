@@ -13,6 +13,7 @@ import java.io.IOException;
 public class JsonParser {
 
 
+    @Deprecated
     public static synchronized Quiz parseJsonStrToObject(String s) throws IOException {
         if (s == null){
             return null;
@@ -20,15 +21,13 @@ public class JsonParser {
         ObjectMapper mapper = new ObjectMapper();
         Theme theme = mapper.readValue(s, Theme.class);
         ThemeToQuiz toQuiz = new ThemeToQuiz();
-        Quiz quiz = toQuiz.convert(theme);
-
-        return quiz;
+        return toQuiz.convert(theme);
     }
 
+    @Deprecated
     public static synchronized String objectToStringJson(Quiz quiz) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(quiz);
-        return jsonInString;
+        return mapper.writeValueAsString(quiz);
     }
 
     public static synchronized JSONObject makeStatus(String message){
