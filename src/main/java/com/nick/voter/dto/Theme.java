@@ -1,6 +1,9 @@
 package com.nick.voter.dto;
 
-
+/** Simple POJO class consisting of theme from Quiz class
+ * @autor Fetissov Mikalai
+ * @version 1.0
+ */
 public class Theme {
     private String theme;
 

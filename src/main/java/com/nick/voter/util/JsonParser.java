@@ -10,6 +10,11 @@ import org.json.simple.JSONObject;
 
 import java.io.IOException;
 
+/** Class for making valid json objects
+ * @autor Fetissov Mikalai
+ * @version 1.0
+ */
+
 public class JsonParser {
 
 
@@ -30,12 +35,20 @@ public class JsonParser {
         return mapper.writeValueAsString(quiz);
     }
 
+    /** Creates json status object form String
+     * @param message- цена
+     * @see JsonParser#makeStatus(String)()
+     */
     public static synchronized JSONObject makeStatus(String message){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status",message);
         return jsonObject;
     }
 
+    /** Creates json url object form String
+     * @param message- цена
+     * @see JsonParser#makeUrl(String)()
+     */
     public static synchronized JSONObject makeUrl(String message){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("url",message);

@@ -8,6 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/** LayoutController class for UI
+ * @autor Fetissov Mikalai
+ * @version 1.0
+ */
+
 @Controller
 public class LayoutController {
 

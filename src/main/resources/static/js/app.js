@@ -9,6 +9,9 @@ $(document).ready(function () {
             dataType: 'json',
             url: '/api/get/all',
             success: function (data) {
+                data.sort(function (obj1,obj2) {
+                    return obj2.id-obj1.id;
+                });
                 $.each(data, function (index,article) {
                     var $quizTable=$('<table class="table" align="center"></table>');
                     var $container=$('<tr></tr>');

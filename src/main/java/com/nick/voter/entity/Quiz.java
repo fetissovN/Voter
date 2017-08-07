@@ -3,6 +3,11 @@ package com.nick.voter.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+/** Main POJO entity Quiz
+ * @autor Fetissov Mikalai
+ * @version 1.0
+ */
+
 @Entity
 @Table(name = "quiz_all")
 public class Quiz {
