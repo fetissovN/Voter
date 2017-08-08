@@ -34,7 +34,6 @@ public class RestController {
     @RequestMapping(value = "api/makeQuiz", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject makeTheme(@RequestBody Theme theme){
-
         Quiz quizNew = new ThemeToQuiz().convert(theme);
         Long id = quizService.saveNewQuiz(quizNew);
         return JsonParser.makeUrl(HOST + "/quiz/"+id);
